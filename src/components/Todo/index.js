@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { THEME } from "../../constants";
 
 const styles = StyleSheet.create({
   root: {
@@ -8,17 +9,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "#eee",
+    borderColor: THEME.GREY_BORDER,
     borderRadius: 3,
     marginBottom: 10,
   },
 });
 
-export const Todo = ({ text, onDelete }) => {
-  return (
+export const Todo = ({ text, onDelete, onChooseTodo }) => (
+  <TouchableOpacity
+    activeOpacity={0.5}
+    onPress={onChooseTodo}
+    onLongPress={onDelete}
+  >
     <View style={styles.root}>
       <Text>{text}</Text>
-      <Button title='удалить' onPress={onDelete} />
     </View>
-  );
-};
+  </TouchableOpacity>
+);

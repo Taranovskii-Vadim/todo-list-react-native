@@ -13,10 +13,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Navbar = ({ title }) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{title}</Text>
-    </View>
-  );
-};
+export const Navbar = ({ title }) => (
+  <View style={styles.container}>
+    <Text style={styles.text}>{title}</Text>
+  </View>
+);

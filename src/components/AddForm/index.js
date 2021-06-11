@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Button, TextInput, Alert } from "react-native";
+import { THEME } from "../../constants";
 
 const styles = StyleSheet.create({
   root: {
-    height: 150,
+    height: 100,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 0.9,
     borderBottomWidth: 1,
-    borderBottomColor: "#5750e6",
+    borderBottomColor: THEME.MAIN_BORDER_COLOR,
     paddingLeft: 5,
   },
 });
@@ -35,6 +36,8 @@ export const AddForm = ({ addTodo }) => {
         placeholder='type here'
         value={val}
         onChangeText={setVal}
+        autoCorrect={false}
+        autoCapitalize='none'
       />
       <Button title='Добавить' onPress={onHandlePress} />
     </View>
