@@ -24,7 +24,7 @@ export const MainScreen = ({
         renderItem={({ item }) => (
           <Todo
             text={item.title}
-            onDelete={() => onHandleDelete(item.id)}
+            onDelete={() => onHandleDelete(item)}
             onChooseTodo={() => onChooseTodo(item.id)}
           />
         )}
