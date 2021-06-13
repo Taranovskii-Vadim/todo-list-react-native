@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
 import { THEME } from "../../constants";
 
+import { EditModal } from "../../components/EditModal";
 import { AppCard } from "../../components/ui/AppCard";
 
 const styles = StyleSheet.create({
@@ -24,23 +25,40 @@ const styles = StyleSheet.create({
   },
 });
 
-export const TodoScreen = ({ todo, resetTodo, onHandleDelete }) => (
-  <View style={styles.root}>
-    <AppCard style={styles.card}>
-      <Text style={styles.title}>{todo.title}</Text>
-      <Button title='редактировать' />
-    </AppCard>
-    <View style={styles.footer}>
-      <View style={styles.button}>
-        <Button title='на главную' color={THEME.GREY} onPress={resetTodo} />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title='удалить'
-          color={THEME.DANGER}
-          onPress={() => onHandleDelete(todo)}
-        />
+export const TodoScreen = ({
+  todo,
+  resetTodo,
+  onHandleDelete,
+  onHandleChange,
+}) => {
+  const [isModal, setIsModal] = useState(() => false);
+
+  const updateTodo = title => onHandleChange(todo.id, title);
+
+  return (
+    <View style={styles.root}>
+      <EditModal
+        visible={isModal}
+        todoTitle={todo.title}
+        onClose={() => setIsModal(false)}
+        updateTodo={updateTodo}
+      />
+      <AppCard style={styles.card}>
+        <Text style={styles.title}>{todo.title}</Text>
+        <Button title='редактировать' onPress={() => setIsModal(true)} />
+      </AppCard>
+      <View style={styles.footer}>
+        <View style={styles.button}>
+          <Button title='на главную' color={THEME.GREY} onPress={resetTodo} />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title='удалить'
+            color={THEME.DANGER}
+            onPress={() => onHandleDelete(todo)}
+          />
+        </View>
       </View>
     </View>
-  </View>
-);
+  );
+};

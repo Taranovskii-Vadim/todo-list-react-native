@@ -33,6 +33,16 @@ const App = () => {
     );
   };
 
+  const onHandleChange = (id, title) =>
+    setTodos(prev =>
+      prev.map(item => {
+        if (item.id === id) {
+          item.title = title;
+        }
+        return item;
+      })
+    );
+
   const onHandleAdd = title =>
     setTodos(prev => [...prev, { id: prev.length + 1, title }]);
 
@@ -44,6 +54,7 @@ const App = () => {
           todo={todos.find(item => item.id === todoId)}
           resetTodo={() => setTodoId(null)}
           onHandleDelete={onHandleDelete}
+          onHandleChange={onHandleChange}
         />
       ) : (
         <MainScreen
