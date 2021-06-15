@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Button, TextInput, Alert } from "react-native";
+import { View, StyleSheet, Keyboard, TextInput, Alert } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { THEME } from "../../constants";
 
@@ -25,6 +25,7 @@ export const AddForm = ({ addTodo }) => {
     if (val.trim()) {
       addTodo(val);
       setVal("");
+      Keyboard.dismiss();
     } else {
       Alert.alert("Введите значение");
     }

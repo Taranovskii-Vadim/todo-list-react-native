@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 import { THEME } from "../../constants";
@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
   },
   card: {
     marginBottom: 20,
+  },
+  button: {
+    width: Dimensions.get("window").width / 3,
   },
   title: {
     fontSize: 21,
@@ -52,8 +55,14 @@ export const TodoScreen = ({
         </CustomButton>
       </AppCard>
       <View style={styles.footer}>
-        <CustomButton onPress={resetTodo}>на главную</CustomButton>
-        <CustomButton onPress={() => onHandleDelete(todo)} color={THEME.DANGER}>
+        <CustomButton style={styles.button} onPress={resetTodo}>
+          назад
+        </CustomButton>
+        <CustomButton
+          style={styles.button}
+          onPress={() => onHandleDelete(todo)}
+          color={THEME.DANGER}
+        >
           удалить
         </CustomButton>
       </View>
