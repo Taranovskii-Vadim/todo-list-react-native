@@ -1,5 +1,8 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+
+import { RobotoRegularText } from "../ui/RobotoRegularText";
+
 import { THEME } from "../../constants";
 
 const styles = StyleSheet.create({
@@ -22,7 +25,7 @@ export const Todo = ({ text, onDelete, onChooseTodo }) => (
     onLongPress={onDelete}
   >
     <View style={styles.root}>
-      <Text>{text}</Text>
+      <RobotoRegularText style={styles.title}>{text}</RobotoRegularText>
     </View>
   </TouchableOpacity>
 );

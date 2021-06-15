@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+
 import { THEME } from "../../constants";
 
-import { EditModal } from "../../components/EditModal";
+import { RobotoBoldText } from "../../components/ui/RobotoBoldText";
 import { AppCard } from "../../components/ui/AppCard";
+import { CustomButton } from "../../components/ui/CustomButton";
+
+import { EditModal } from "../../components/EditModal";
 
 const styles = StyleSheet.create({
   root: {
@@ -13,9 +18,6 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  button: {
-    width: "40%",
   },
   card: {
     marginBottom: 20,
@@ -44,20 +46,16 @@ export const TodoScreen = ({
         updateTodo={updateTodo}
       />
       <AppCard style={styles.card}>
-        <Text style={styles.title}>{todo.title}</Text>
-        <Button title='редактировать' onPress={() => setIsModal(true)} />
+        <RobotoBoldText style={styles.title}>{todo.title}</RobotoBoldText>
+        <CustomButton onPress={() => setIsModal(true)} color='blue'>
+          <FontAwesome name='edit' size={20} />
+        </CustomButton>
       </AppCard>
       <View style={styles.footer}>
-        <View style={styles.button}>
-          <Button title='на главную' color={THEME.GREY} onPress={resetTodo} />
-        </View>
-        <View style={styles.button}>
-          <Button
-            title='удалить'
-            color={THEME.DANGER}
-            onPress={() => onHandleDelete(todo)}
-          />
-        </View>
+        <CustomButton onPress={resetTodo}>на главную</CustomButton>
+        <CustomButton onPress={() => onHandleDelete(todo)} color={THEME.DANGER}>
+          удалить
+        </CustomButton>
       </View>
     </View>
   );

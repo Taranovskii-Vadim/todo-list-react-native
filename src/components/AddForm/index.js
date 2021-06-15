@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Button, TextInput, Alert } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 import { THEME } from "../../constants";
 
 const styles = StyleSheet.create({
@@ -33,13 +34,15 @@ export const AddForm = ({ addTodo }) => {
     <View style={styles.root}>
       <TextInput
         style={styles.input}
-        placeholder='type here'
+        placeholder='Введите значение'
         value={val}
         onChangeText={setVal}
         autoCorrect={false}
         autoCapitalize='none'
       />
-      <Button title='Добавить' onPress={onHandlePress} />
+      <AntDesign.Button onPress={onHandlePress} name='pluscircleo'>
+        Добавить
+      </AntDesign.Button>
     </View>
   );
 };

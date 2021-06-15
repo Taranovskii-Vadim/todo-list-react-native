@@ -1,5 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+
+import { RobotoBoldText } from "../ui/RobotoBoldText";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,6 +17,6 @@ const styles = StyleSheet.create({
 
 export const Navbar = ({ title }) => (
   <View style={styles.container}>
-    <Text style={styles.text}>{title}</Text>
+    <RobotoBoldText style={styles.text}>{title}</RobotoBoldText>
   </View>
 );

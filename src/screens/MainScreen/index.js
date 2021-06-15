@@ -1,8 +1,9 @@
 import React from "react";
-import { View, FlatList, Image, StyleSheet, Text } from "react-native";
+import { View, FlatList, Image, StyleSheet } from "react-native";
 
 import { AddForm } from "../../components/AddForm";
 import { Todo } from "../../components/Todo";
+import { RobotoBoldText } from "../../components/ui/RobotoBoldText";
 
 import { THEME } from "../../constants";
 
@@ -55,7 +56,9 @@ export const MainScreen = ({
             style={styles.img}
             source={require("../../../assets/noData.png")}
           />
-          <Text style={styles.noData}>Пока что задач нет :(</Text>
+          <RobotoBoldText style={styles.noData}>
+            Пока что задач нет :(
+          </RobotoBoldText>
         </View>
       )}
     </>
