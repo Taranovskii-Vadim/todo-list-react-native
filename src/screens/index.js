@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { Alert } from "react-native";
 import { TodosContext } from "../context/todosContext";
 import { TodoContext } from "../context/todoContext";
@@ -7,7 +7,7 @@ import { MainScreen } from "./MainScreen";
 import { TodoScreen } from "./TodoScreen";
 
 export const ProtectedScreens = () => {
-  const { todos, onDeleteTodo } = useContext(TodosContext);
+  const { todos, onDeleteTodo, onFetchTodos } = useContext(TodosContext);
 
   const { todoId, setTodoId } = useContext(TodoContext);
 
@@ -32,6 +32,15 @@ export const ProtectedScreens = () => {
       { cancelable: false }
     );
   };
+
+  const loadTodos = useCallback(
+    async () => await onFetchTodos(),
+    [onFetchTodos]
+  );
+
+  useEffect(() => {
+    loadTodos();
+  }, []);
 
   return (
     <>
