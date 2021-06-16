@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, FlatList, Image, StyleSheet } from "react-native";
 
 import { AddForm } from "../../components/AddForm";
@@ -6,6 +6,7 @@ import { Todo } from "../../components/Todo";
 import { RobotoBoldText } from "../../components/ui/RobotoBoldText";
 
 import { THEME } from "../../constants";
+import { TodosContext } from "../../context/todosContext";
 
 const styles = StyleSheet.create({
   imgWrapper: {
@@ -26,16 +27,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export const MainScreen = ({
-  todos,
-  onHandleAdd,
-  onHandleDelete,
-  onChooseTodo,
-}) => {
+export const MainScreen = ({ todos, onHandleDelete, onChooseTodo }) => {
+  const { onAddTodo } = useContext(TodosContext);
+
   return (
     <>
       <View style={THEME.COMMON_PADDING}>
-        <AddForm addTodo={onHandleAdd} />
+        <AddForm addTodo={onAddTodo} />
       </View>
       {todos.length ? (
         <FlatList

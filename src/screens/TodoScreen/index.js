@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
@@ -9,6 +9,7 @@ import { AppCard } from "../../components/ui/AppCard";
 import { CustomButton } from "../../components/ui/CustomButton";
 
 import { EditModal } from "../../components/EditModal";
+import { TodosContext } from "../../context/todosContext";
 
 const styles = StyleSheet.create({
   root: {
@@ -30,15 +31,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export const TodoScreen = ({
-  todo,
-  resetTodo,
-  onHandleDelete,
-  onHandleChange,
-}) => {
+export const TodoScreen = ({ todo, resetTodo, onHandleDelete }) => {
   const [isModal, setIsModal] = useState(() => false);
 
-  const updateTodo = title => onHandleChange(todo.id, title);
+  const { onChangeTodo } = useContext(TodosContext);
+
+  const updateTodo = title => onChangeTodo(todo.id, title);
 
   return (
     <View style={styles.root}>
