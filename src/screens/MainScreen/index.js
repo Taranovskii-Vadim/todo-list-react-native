@@ -4,6 +4,7 @@ import { View, FlatList, Image, StyleSheet } from "react-native";
 import { AddForm } from "../../components/AddForm";
 import { Todo } from "../../components/Todo";
 import { RobotoBoldText } from "../../components/ui/RobotoBoldText";
+import { AppLoader } from "../../components/ui/AppLoader";
 
 import { THEME } from "../../constants";
 import { TodosContext } from "../../context/todosContext";
@@ -28,7 +29,11 @@ const styles = StyleSheet.create({
 });
 
 export const MainScreen = ({ todos, onHandleDelete, onChooseTodo }) => {
-  const { onAddTodo } = useContext(TodosContext);
+  const { onAddTodo, loading } = useContext(TodosContext);
+
+  if (loading) {
+    return <AppLoader />;
+  }
 
   return (
     <>
