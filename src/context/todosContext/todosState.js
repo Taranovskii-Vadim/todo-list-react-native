@@ -33,8 +33,6 @@ export const TodosState = ({ children }) => {
 
   const onChangeTodo = (id, title) => dispatch(changeTodo(id, title));
 
-  // const resetError = () => dispatch(setError(null));
-
   const onFetchTodos = async () => {
     try {
       dispatch(changeLoading());
@@ -43,7 +41,7 @@ export const TodosState = ({ children }) => {
         fetchTodos(data.map(item => ({ id: item.id, title: item.title })))
       );
     } catch (e) {
-      dispatch(setError(e.message));
+      dispatch(setError("Ошибка!!!"));
     } finally {
       dispatch(changeLoading());
     }

@@ -5,6 +5,7 @@ import { AddForm } from "../../components/AddForm";
 import { Todo } from "../../components/Todo";
 import { RobotoBoldText } from "../../components/ui/RobotoBoldText";
 import { AppLoader } from "../../components/ui/AppLoader";
+import { AppError } from "../../components/ui/AppError";
 
 import { THEME } from "../../constants";
 import { TodosContext } from "../../context/todosContext";
@@ -29,10 +30,14 @@ const styles = StyleSheet.create({
 });
 
 export const MainScreen = ({ todos, onHandleDelete, onChooseTodo }) => {
-  const { onAddTodo, loading } = useContext(TodosContext);
+  const { onAddTodo, loading, error } = useContext(TodosContext);
 
   if (loading) {
     return <AppLoader />;
+  }
+
+  if (error) {
+    return <AppError error={error} />;
   }
 
   return (
