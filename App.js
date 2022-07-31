@@ -25,20 +25,20 @@ const App = () => {
       <AppLoading
         startAsync={loadApplication}
         onFinish={() => setIsReady(true)}
-        onError={e => console.log(e)}
+        onError={(e) => console.log(e)}
       />
     );
   }
 
   return (
     <View style={{ flex: 1 }}>
-      <Navbar title='список задач' />
+      <Navbar title="список задач" />
       <TodosState>
         <TodoState>
           <ProtectedScreens />
         </TodoState>
       </TodosState>
-      <StatusBar style='auto' />
+      <StatusBar style="auto" />
     </View>
   );
 };
